@@ -1,0 +1,29 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="bean.Affecter" table="affecter">
+        
+        <composite-id name="id" class="bean.AffecterId">
+            <key-property name="codeEmp" type="java.lang.String">
+                <column name="codeEmp" />
+            </key-property>
+            <key-property name="codeLieu" type="java.lang.String">
+                <column name="codeLieu" />
+            </key-property>
+        </composite-id>
+
+        <many-to-one name="employee" class="bean.Employee" insert="false" update="false">
+            <column name="codeEmp" />
+        </many-to-one>
+
+        <many-to-one name="lieu" class="bean.Lieu" insert="false" update="false">
+            <column name="codeLieu" />
+        </many-to-one>
+
+        <property name="date" type="java.util.Date">
+            <column name="date" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

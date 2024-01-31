@@ -1,0 +1,25 @@
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="bean.Employee" table="employee">
+        
+        <id name="codeEmp" type="java.lang.String">
+            <column name="codeEmp" />
+            <generator class="assigned" />
+        </id>
+
+        <property name="nom" type="java.lang.String">
+            <column name="nom" />
+        </property>
+
+        <property name="prenom" type="java.lang.String">
+            <column name="prenom" />
+        </property>
+
+        <property name="poste" type="java.lang.String">
+            <column name="poste" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

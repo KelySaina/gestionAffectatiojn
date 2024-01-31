@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="webapp" default="default" basedir=".">
+    <description>Builds, tests, and runs the project webapp.</description>
+
+    <!-- Import the default NetBeans build script -->
+    <import file="nbproject/build-impl.xml"/>
+
+    <!-- Set the path to the Hibernate JARs -->
+    <property name="hibernate.lib.dir" location="lib/Hibernate"/>
+
+    <!-- Append Hibernate JARs to the classpath -->
+    <path id="j2ee.classpath">
+        <fileset dir="${hibernate.lib.dir}">
+            <include name="**/*.jar"/>
+        </fileset>
+        <path refid="javac.classpath"/>
+    </path>
+
+    <!-- Override the pre-compile target to include Hibernate JARs -->
+    <target name="-pre-compile">
+        <javac source="1.8" target="1.8" debug="${debug}" destdir="${build.classes.dir}">
+            <src path="${src.dir}"/>
+            <classpath refid="j2ee.classpath"/>
+        </javac>
+    </target>
+
+</project>

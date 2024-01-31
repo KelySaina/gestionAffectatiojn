@@ -1,0 +1,22 @@
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="bean.Lieu" table="lieu">
+        
+        <id name="codeLieu" type="java.lang.String">
+            <column name="codeLieu" />
+            <generator class="assigned" />
+        </id>
+
+        <property name="designation" type="java.lang.String">
+            <column name="designation" />
+        </property>
+
+        <property name="province" type="java.lang.String">
+            <column name="province" />
+        </property>
+        
+    </class>
+</hibernate-mapping>
