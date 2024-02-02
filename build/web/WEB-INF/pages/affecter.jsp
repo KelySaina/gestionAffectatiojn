@@ -96,6 +96,9 @@
                         <% } %>
                     </select>
                     <p></p>
+                    <label for="selectPlace">Pick a date</label>
+                    <input class="form-select" type="date" id="dateToAdd"  />
+                    <p></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="$('#exampleModal').modal('hide')">Close</button>
@@ -131,12 +134,22 @@
                 }
             }
             function ajouter() {
+                var currentTimestamp = new Date().getTime();
+                var currentTime = new Date(currentTimestamp);
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var seconds = currentTime.getSeconds();
+
+                // Create a formatted time string
+                var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
+                
                 codeEmpToAdd = document.getElementById("selectEmployee").value;
                 codeLiToAdd = document.getElementById("selectPlace").value;
-                //alert(codeEmpToAdd+codeLiToAdd)
+                dateToAdd = document.getElementById("dateToAdd").value+" "+formattedTime;
+                //alert(dateToAdd)
                 // Make an AJAX request to the servlet
                 var xhr = new XMLHttpRequest();
-                xhr.open("GET", "/webapp/affecter?codeEmpToAdd=" + codeEmpToAdd +"&codeLiToAdd="+codeLiToAdd, true);
+                xhr.open("GET", "/webapp/affecter?codeEmpToAdd=" + codeEmpToAdd +"&codeLiToAdd="+codeLiToAdd+"&dateToAdd="+dateToAdd, true);
 
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState == 4 && xhr.status == 200) {

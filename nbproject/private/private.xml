@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/thyler/testProjets/netbeans/webapp/src/java/manager/AffecterManager.java</file>
             <file>file:/home/thyler/testProjets/netbeans/webapp/src/java/servelets/AffecterServlet.java</file>
+            <file>file:/home/thyler/testProjets/netbeans/webapp/web/index.html</file>
             <file>file:/home/thyler/testProjets/netbeans/webapp/src/java/bean/Affecter.java</file>
             <file>file:/home/thyler/testProjets/netbeans/webapp/web/WEB-INF/pages/employees.jsp</file>
             <file>file:/home/thyler/testProjets/netbeans/webapp/web/WEB-INF/pages/affecter.jsp</file>
