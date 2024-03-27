@@ -59,7 +59,12 @@ public class LieuServlet extends HttpServlet {
         }
         else if(codeLiToDelete != null && !codeLiToDelete.isEmpty()) {
             LieuManager li = new LieuManager();
-            li.deleteLieu(codeLiToDelete);
+            try{
+                li.deleteLieu(codeLiToDelete);
+            }catch(Exception e){
+                request.setAttribute("errorMessage", "Can't delete Assigned Place's record");
+            }
+            
             lieuList = li.getAllData();
         }
         else {

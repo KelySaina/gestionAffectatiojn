@@ -11,6 +11,7 @@
 <body style="padding: 12px"  id="employeeTableBody">
     <%
         List<Lieu> lieuList = (List<Lieu>)request.getAttribute("lieuList");
+        String errMsg = (String) request.getAttribute("errorMessage");
     %>
 
     <nav class="navbar navbar-light bg-light justify-content-between">
@@ -32,6 +33,11 @@
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="search()">Search</button>
         </form>
     </nav>
+    <% if (errMsg != null) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= errMsg %>
+        </div>
+    <% } %>
 
     <h1 style="margin: 12px 0"><b>Place Management</b></h1>
 
@@ -68,7 +74,7 @@
                   <input type="hidden" value="" id="liCode"/>
                   <div class="form-group">
                     <label for="inputNom">Designation</label>
-                    <input type="text" class="form-control" id="inputDesignation" placeholder="Ex: Ivory">
+                    <input type="text" class="form-control" id="inputDesignation" placeholder="Ex: Fihary Soft">
                   </div>
                 <div class="form-group" style="margin-top: 20px">
                   <label for="inputPoste">Province</label>
@@ -77,14 +83,15 @@
                 <div class="form-group" style="margin-top: 20px">
                     <button  type="submit" class="btn btn-primary" id="addBtn" onclick="ajouter()">Add</button>
                 </div>
-                <div class="form-group" style="margin-top: 20px">
+                <div class="form-group" style="margin-top: 20px; display: flex;" >
                     <button  type="submit" class="btn btn-primary" id="saveBtn" style="display: none" onclick="edit()">Save</button>
+                    <button  type="submit" class="btn btn-secondary" id="cancelBtn" style="display: none; margin-left: 24px;" onclick="cancel()">Cancel</button>
                 </div>
               </form>
         </div>
     </div>
                 
-    <!-- MODAL CONFIRMATION DELETE -->
+<!--     MODAL CONFIRMATION DELETE 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -101,7 +108,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
 
 <script>
     
@@ -111,6 +118,7 @@
     }
     
     function showAdd(){
+        document.getElementById("cancelBtn").style.display = 'none';
         document.getElementById("saveBtn").style.display = 'none';
         document.getElementById("addBtn").style.display = 'block';
         //document.getElementById("inputNom").value = '';
@@ -182,9 +190,19 @@
         document.getElementById("liCode").value = liCode;
         document.getElementById("inputDesignation").value = designation;
         document.getElementById("inputProvince").value = province;
+        document.getElementById("cancelBtn").style.display = 'block';
         document.getElementById("saveBtn").style.display = 'block';
         document.getElementById("addBtn").style.display = 'none';
     }
+    
+    function cancel(){
+        document.getElementById("cancelBtn").style.display = 'none';
+        document.getElementById("saveBtn").style.display = 'none';
+        document.getElementById("addBtn").style.display = 'block';
+        document.getElementById("inputDesignation").value = '';
+        document.getElementById("inputProvince").value = '';
+    }
+    
     
     
     function ajouter() {

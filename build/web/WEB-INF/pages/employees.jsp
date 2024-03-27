@@ -11,6 +11,7 @@
 <body style="padding: 12px"  id="employeeTableBody">
     <%
         List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList");
+        String errMsg = (String) request.getAttribute("errorMessage");
     %>
 
     <nav class="navbar navbar-light bg-light justify-content-between">
@@ -32,6 +33,11 @@
             <button class="btn btn-outline-primary my-2 my-sm-0" type="button" onclick="search()">Search</button>
         </form>
     </nav>
+    <% if (errMsg != null) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= errMsg %>
+        </div>
+    <% } %>
 
     <h1 style="margin: 12px 0"><b>Employee Management</b></h1>
 
@@ -86,14 +92,15 @@
                 <div class="form-group" style="margin-top: 20px">
                     <button  type="submit" class="btn btn-primary" id="addBtn" onclick="ajouter()">Add</button>
                 </div>
-                <div class="form-group" style="margin-top: 20px">
+                <div class="form-group" style="margin-top: 20px; display: flex;">
                     <button  type="submit" class="btn btn-primary" id="saveBtn" style="display: none" onclick="edit()">Save</button>
+                    <button  type="submit" class="btn btn-secondary" id="cancelBtn" style="display: none;margin-left: 24px;" onclick="cancel()">Cancel</button>
                 </div>
               </form>
         </div>
     </div>
                 
-    <!-- MODAL CONFIRMATION DELETE -->
+<!--     MODAL CONFIRMATION DELETE 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
@@ -110,7 +117,8 @@
             </div>
           </div>
         </div>
-      </div>
+      </div>-->
+
 
 <script>
     
@@ -120,6 +128,7 @@
     }
     
     function showAdd(){
+        document.getElementById("cancelBtn").style.display = 'none';
         document.getElementById("saveBtn").style.display = 'none';
         document.getElementById("addBtn").style.display = 'block';
         //document.getElementById("inputNom").value = '';
@@ -188,11 +197,21 @@
         
     }
     
+    function cancel(){
+        document.getElementById("cancelBtn").style.display = 'none';
+        document.getElementdocument.getElementById("cancelBtn").style.display = 'none';ById("saveBtn").style.display = 'none';
+        document.getElementById("addBtn").style.display = 'block';
+        document.getElementById("inputNom").value = '';
+        document.getElementById("inputPrenom").value = '';
+        document.getElementById("inputPoste").value = '';
+    }
+    
     function setValues(empCode,nom, prenom, poste){
         document.getElementById("empCode").value = empCode;
         document.getElementById("inputNom").value = nom;
         document.getElementById("inputPrenom").value = prenom;
         document.getElementById("inputPoste").value = poste;
+        document.getElementById("cancelBtn").style.display = 'block';
         document.getElementById("saveBtn").style.display = 'block';
         document.getElementById("addBtn").style.display = 'none';
     }
