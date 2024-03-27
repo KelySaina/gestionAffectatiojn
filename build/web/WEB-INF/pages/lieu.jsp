@@ -54,10 +54,9 @@
                                 <td><%= li.getDesignation()%></td>
                                 <td><%= li.getProvince()%></td>
                                 <td style="display: flex; justify-content: space-evenly; align-items: center;" >
-                                    <button type="button" class="btn btn-primary" style="width: 80px" onclick="setValues('<%= li.getDesignation()%>','<%= li.getProvince()%>')">Edit</button>
+                                    <button type="button" class="btn btn-primary" style="width: 80px" onclick="setValues('<%= li.getCodeLieu() %>','<%= li.getDesignation()%>','<%= li.getProvince()%>')">Edit</button>
                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="confirmDelete('<%= li.getCodeLieu() %>'); showAdd()" style="width: 80px">Delete</button>
                                 </td>
-                                <input type="hidden" value="<%= li.getCodeLieu()%>" id="liCode"/>
                             </tr>
                         <% } %>
                 </tbody>
@@ -66,6 +65,7 @@
         <div class="col">
             <h3>Operations</h3>
             <form>
+                  <input type="hidden" value="" id="liCode"/>
                   <div class="form-group">
                     <label for="inputNom">Designation</label>
                     <input type="text" class="form-control" id="inputDesignation" placeholder="Ex: Ivory">
@@ -104,6 +104,12 @@
       </div>
 
 <script>
+    
+    function getLiCode(){
+//        alert(document.getElementById("liCode").value)
+        return document.getElementById("liCode").value;
+    }
+    
     function showAdd(){
         document.getElementById("saveBtn").style.display = 'none';
         document.getElementById("addBtn").style.display = 'block';
@@ -153,7 +159,7 @@
         newDesignation = document.getElementById("inputDesignation").value;
         newProvince = document.getElementById("inputProvince").value;
         codeLiToEdit = getLiCode();
-        //alert(codeEmpToEdit + newNom + newPrenom + newPoste)
+//        alert(codeLiToEdit);
         
         // Make an AJAX request to the servlet
         var xhr = new XMLHttpRequest();
@@ -172,7 +178,8 @@
         
     }
     
-    function setValues(designation, province){
+    function setValues(liCode, designation, province){
+        document.getElementById("liCode").value = liCode;
         document.getElementById("inputDesignation").value = designation;
         document.getElementById("inputProvince").value = province;
         document.getElementById("saveBtn").style.display = 'block';

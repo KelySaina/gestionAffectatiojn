@@ -35,7 +35,10 @@ public class EmployeesServlet extends HttpServlet {
         
         List<Employee> employeeList = new ArrayList<>();
         
+        System.out.println("RECORDS: "+newNom+codeEmpToEdit+newPrenom+newPoste);
+        
         if(codeEmpToEdit != null && !codeEmpToEdit.isEmpty() && newNom != null && !newNom.isEmpty() && newPrenom != null && !newPrenom.isEmpty() && newPoste != null && !newPoste.isEmpty() ){
+            System.out.println("Editing employe");
             EmployeeManager em = new EmployeeManager();
             em.editEmployee(codeEmpToEdit, newNom, newPrenom, newPoste);
             employeeList = em.getAllData();

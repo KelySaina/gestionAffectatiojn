@@ -17,6 +17,7 @@
             <column name="codeEmp" />
         </many-to-one>
 
+
         <many-to-one name="lieu" class="bean.Lieu" insert="false" update="false">
             <column name="codeLieu" />
         </many-to-one>

@@ -56,9 +56,10 @@
                                 <td><%= emp.getPrenom() %></td>
                                 <td><%= emp.getPoste() %></td>
                                 <td style="display: flex; justify-content: space-evenly; align-items: center;" >                                    
-                                    <button type="button" class="btn btn-primary" style="width: 80px" onclick="setValues('<%= emp.getNom()%>','<%= emp.getPrenom()%>','<%= emp.getPoste()%>')">Edit</button>
+                                    <button type="button" class="btn btn-primary" style="width: 80px" onclick="setValues('<%= emp.getCodeEmp() %>','<%= emp.getNom()%>','<%= emp.getPrenom()%>','<%= emp.getPoste()%>')">Edit</button>
                                     <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="confirmDelete('<%= emp.getCodeEmp()%>'); showAdd()" style="width: 80px">Delete</button>                                                                                       
                                 </td>
+                                
                             </tr>
                         <% } %>
                 </tbody>
@@ -68,6 +69,7 @@
             <h3>Operations</h3>
             <form>
                 <div class="row">
+                  <input type="hidden" value="" id="empCode"/>
                   <div class="form-group col">
                     <label for="inputNom">Nom</label>
                     <input type="text" class="form-control" id="inputNom" placeholder="Ex: RAKOTO">
@@ -112,6 +114,11 @@
 
 <script>
     
+    function getEmpCode(){
+//        alert(document.getElementById("empCode").value)
+        return document.getElementById("empCode").value;
+    }
+    
     function showAdd(){
         document.getElementById("saveBtn").style.display = 'none';
         document.getElementById("addBtn").style.display = 'block';
@@ -141,7 +148,7 @@
     
     function del(codeEmpToDelete) {
         
-        //alert(codeEmpToDelete)
+//        alert(codeEmpToDelete)
         showAdd()
         // Make an AJAX request to the servlet
         var xhr = new XMLHttpRequest();
@@ -162,7 +169,7 @@
         newPrenom = document.getElementById("inputPrenom").value;
         newPoste = document.getElementById("inputPoste").value;
         codeEmpToEdit = getEmpCode();
-        //alert(codeEmpToEdit + newNom + newPrenom + newPoste)
+//        alert("Employee "+codeEmpToEdit+"'s New Informations:\nName:" + newNom +"\nSurname:" newPrenom + "\nPost:"+newPoste)
         
         // Make an AJAX request to the servlet
         var xhr = new XMLHttpRequest();
@@ -181,7 +188,8 @@
         
     }
     
-    function setValues(nom, prenom, poste){
+    function setValues(empCode,nom, prenom, poste){
+        document.getElementById("empCode").value = empCode;
         document.getElementById("inputNom").value = nom;
         document.getElementById("inputPrenom").value = prenom;
         document.getElementById("inputPoste").value = poste;
